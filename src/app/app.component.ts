@@ -9,7 +9,7 @@ export class AppComponent {
   title = "miq-angular-pwa";
   selectedTopic = "";
   openSidenav = false;
-
+  showFiller = false;
   onTopicClick(topic: string) {
     this.selectedTopic = topic;
   }

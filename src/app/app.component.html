@@ -13,7 +13,7 @@
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
-<mat-sidenav-container class="example-container">
+<!-- <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav role="navigation">Sidenav content</mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary" *ngIf="this.selectedTopic">
@@ -31,4 +31,34 @@
 
     <main><router-outlet></router-outlet></main>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <main>
+      <mat-toolbar color="primary" *ngIf="this.selectedTopic">
+        <mat-toolbar-row class="second-tool-bar">
+          <button mat-button (click)="drawer.toggle()">
+            <mat-icon aria-hidden="false" aria-label="Logo">
+              menu
+            </mat-icon>
+            <span class="selected-topic">
+              {{ this.selectedTopic }} Interview Questions
+            </span>
+          </button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div class="main-content">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</mat-drawer-container>

@@ -38,6 +38,25 @@ mat-sidenav {
   width: 250px;
 }
 
-main {
+// main {
+//   padding: 4rem;
+// }
+
+.example-container {
+  // width: 500px;
+  height: 100vh;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+}
+
+.example-sidenav {
+  padding: 20px;
+  min-width: 32rem;
+  max-width: 32rem;
+}
+
+.main-content {
   padding: 4rem;
 }
