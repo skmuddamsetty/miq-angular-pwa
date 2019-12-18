@@ -52,11 +52,22 @@ mat-sidenav {
 }
 
 .example-sidenav {
-  padding: 20px;
+  // padding: 20px;
   min-width: 32rem;
   max-width: 32rem;
+  background-color: #3f51b5;
 }
 
 .main-content {
   padding: 4rem;
+}
+
+.side-nav-button {
+  color: white;
+  display: block;
+  width: 100%;
+  padding: 1rem 0;
+  &:first-of-type {
+    margin-top: 1.2rem;
+  }
 }
