@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="first-tool-bar">
+    <button mat-button class="logo-button">
+      <mat-icon aria-hidden="false" aria-label="Logo">
+        emoji_objects
+      </mat-icon>
+      <span>Interview Questions</span>
+    </button>
+    <button mat-button (click)="onTopicClick('Angular')">Angular</button>
+    <button mat-button (click)="onTopicClick('Sacling')">Scaling</button>
+    <button mat-button (click)="onTopicClick('Spring Micro Services')">
+      Spring Micro Services
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav role="navigation">Sidenav content</mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" *ngIf="this.selectedTopic">
+      <mat-toolbar-row class="second-tool-bar">
+        <button mat-button (click)="sidenav.toggle()">
+          <mat-icon aria-hidden="false" aria-label="Logo">
+            menu
+          </mat-icon>
+          <span class="selected-topic"
+            >{{ this.selectedTopic }} Interview Questions</span
+          >
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <main><router-outlet></router-outlet></main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,43 @@
+.logo-button {
+  display: flex;
+  align-items: center;
+}
+
+mat-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  min-height: 5.6rem;
+}
+
+.first-tool-bar {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.selected-topic {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+}
+
+.second-tool-bar {
+  min-height: 8rem;
+}
+
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+main {
+  padding: 4rem;
+}

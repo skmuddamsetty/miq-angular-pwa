@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  line-height: 1.6;
+  letter-spacing: 1.2px;
+  font-size: 62.5% !important;
+}
+
+body {
+  margin: 0;
+}
+
+// Override Material Design Roboto Font
+body [class^="mat-"]:not(mat-icon),
+body [class*="mat-"]:not(mat-icon) {
+  font-family: "Fira Code", Roboto, "Helvetica Neue", sans-serif;
+}
