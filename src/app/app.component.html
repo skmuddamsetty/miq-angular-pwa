@@ -9,6 +9,9 @@
     <button mat-button (click)="onTopicClick('angular', 'Angular')">
       Angular
     </button>
+    <button mat-button (click)="onTopicClick('angular', 'Angular')">
+      Node.js
+    </button>
     <button mat-button (click)="onTopicClick('scaling', 'Scaling')">
       Scaling
     </button>
@@ -22,7 +25,7 @@
 </mat-toolbar>
 
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
     <button
       mat-button
       class="side-nav-button"

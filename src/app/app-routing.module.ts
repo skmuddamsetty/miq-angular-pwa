@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { ListComponent } from "./list/list.component";
 
 const routes: Routes = [
-  { path: "", component: ListComponent },
+  { path: "", redirectTo: "/", pathMatch: "full" },
   { path: ":topic", component: ListComponent },
   { path: ":topic/:id", component: ListComponent }
 ];
