@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { IdbService } from "./shared-services/idb.service";
 
 @Component({
   selector: "app-root",
@@ -14,12 +15,18 @@ export class AppComponent implements OnInit {
   openSidenav = false;
   showFiller = false;
   myForm: FormGroup;
+  networkMode = "online"; // to track network mode
   constructor(
     public router: Router,
     public afs: AngularFirestore,
     public route: ActivatedRoute,
-    public formBuilder: FormBuilder
-  ) {}
+    private idbService: IdbService
+  ) {
+    navigator.onLine === true
+      ? (this.networkMode = "online")
+      : (this.networkMode = "offline");
+    this.idbService.connectToIDB();
+  }
 
   ngOnInit() {
     this.router.navigate(["miq", this.selectedTopicKey]);

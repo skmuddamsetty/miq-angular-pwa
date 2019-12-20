@@ -16,12 +16,12 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
-import { ListComponent } from "./list/list.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IqaListComponent } from "./iqa-list/iqa-list.component";
+import { MiqaListComponent } from "./miqa-list/miqa-list.component";
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, IqaListComponent],
+  declarations: [AppComponent, IqaListComponent, MiqaListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
