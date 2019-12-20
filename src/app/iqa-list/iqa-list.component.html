@@ -1,74 +1,14 @@
-<div class="iqa-list">
-  <div class="iqa-box">
+<div *ngIf="this.iqaList.length <= 0">
+  No Interview Questions on the selected topic
+</div>
+<div class="iqa-list" *ngIf="this.iqaList.length > 0">
+  <div class="iqa-box" *ngFor="let iq of this.iqaList">
     <div class="iqa-box__iq">
-      Lorem ipsum dolor?
+      {{ iq.question }}
     </div>
     <mat-divider color="primary"></mat-divider>
     <div class="iqa-box__ia">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, harum. Ab
-      qui quam cumque veritatis minima laudantium assumenda animi cum ex vel
-      inventore temporibus, dolores perspiciatis soluta nihil quibusdam
-      sapiente.
-    </div>
-  </div>
-  <div class="iqa-box">
-    <div class="iqa-box__iq">
-      Lorem ipsum dolor?
-    </div>
-    <mat-divider color="primary"></mat-divider>
-    <div class="iqa-box__ia">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, harum. Ab
-      qui quam cumque veritatis minima laudantium assumenda animi cum ex vel
-      inventore temporibus, dolores perspiciatis soluta nihil quibusdam
-      sapiente.
-    </div>
-  </div>
-  <div class="iqa-box">
-    <div class="iqa-box__iq">
-      Lorem ipsum dolor?
-    </div>
-    <mat-divider color="primary"></mat-divider>
-    <div class="iqa-box__ia">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, harum. Ab
-      qui quam cumque veritatis minima laudantium assumenda animi cum ex vel
-      inventore temporibus, dolores perspiciatis soluta nihil quibusdam
-      sapiente.
-    </div>
-  </div>
-  <div class="iqa-box">
-    <div class="iqa-box__iq">
-      Lorem ipsum dolor?
-    </div>
-    <mat-divider color="primary"></mat-divider>
-    <div class="iqa-box__ia">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, harum. Ab
-      qui quam cumque veritatis minima laudantium assumenda animi cum ex vel
-      inventore temporibus, dolores perspiciatis soluta nihil quibusdam
-      sapiente.
-    </div>
-  </div>
-  <div class="iqa-box">
-    <div class="iqa-box__iq">
-      Lorem ipsum dolor?
-    </div>
-    <mat-divider color="primary"></mat-divider>
-    <div class="iqa-box__ia">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, harum. Ab
-      qui quam cumque veritatis minima laudantium assumenda animi cum ex vel
-      inventore temporibus, dolores perspiciatis soluta nihil quibusdam
-      sapiente.
-    </div>
-  </div>
-  <div class="iqa-box">
-    <div class="iqa-box__iq">
-      Lorem ipsum dolor?
-    </div>
-    <mat-divider color="primary"></mat-divider>
-    <div class="iqa-box__ia">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, harum. Ab
-      qui quam cumque veritatis minima laudantium assumenda animi cum ex vel
-      inventore temporibus, dolores perspiciatis soluta nihil quibusdam
-      sapiente.
+      <div [innerHTML]="iq.htmlAnswer"></div>
     </div>
   </div>
 </div>

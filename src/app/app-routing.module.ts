@@ -3,9 +3,9 @@ import { Routes, RouterModule } from "@angular/router";
 import { IqaListComponent } from "./iqa-list/iqa-list.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/", pathMatch: "full" },
-  { path: ":topic", component: IqaListComponent },
-  { path: ":topic/:id", component: IqaListComponent }
+  { path: "", redirectTo: "miq/", pathMatch: "full" },
+  { path: "miq/:topic", component: IqaListComponent },
+  { path: "miq/:topic/:id", component: IqaListComponent }
 ];
 
 @NgModule({

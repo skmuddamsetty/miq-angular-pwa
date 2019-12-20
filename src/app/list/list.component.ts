@@ -16,8 +16,7 @@ export class ListComponent implements OnInit {
   topic: string;
   private sub: any;
   profileForm = new FormGroup({
-    firstName: new FormControl("", [Validators.email]),
-    lastName: new FormControl(""),
+    email: new FormControl("", [Validators.email]),
     password: new FormControl(""),
     confirmPassword: new FormControl("")
   });

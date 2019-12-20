@@ -33,21 +33,25 @@
     >
       Angular Interview Questions Part 1
     </button>
-    <button mat-button class="side-nav-button">
+    <button
+      mat-button
+      class="side-nav-button"
+      (click)="onSubTopicSelect('123')"
+    >
       Angular Interview Questions Part 2
     </button>
   </mat-drawer>
 
   <div class="example-sidenav-content">
     <main>
-      <mat-toolbar color="primary" *ngIf="this.selectedTopic">
+      <mat-toolbar color="primary" *ngIf="this.selectedTopicTitle">
         <mat-toolbar-row class="second-tool-bar">
           <button mat-button (click)="drawer.toggle()">
             <mat-icon aria-hidden="false" aria-label="Logo">
               menu
             </mat-icon>
             <span class="selected-topic">
-              {{ this.selectedTopic }} Interview Questions
+              {{ this.selectedTopicTitle }} Interview Questions
             </span>
           </button>
         </mat-toolbar-row>

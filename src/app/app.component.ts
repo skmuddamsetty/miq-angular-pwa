@@ -1,11 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import {
-  AngularFirestore,
-  AngularFirestoreDocument
-} from "@angular/fire/firestore";
-import { FormBuilder, NgForm, Validators, FormGroup } from "@angular/forms";
-import { Observable } from "rxjs";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-root",
@@ -13,13 +9,11 @@ import { Observable } from "rxjs";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  selectedTopic = "";
+  selectedTopicTitle = "Angular";
+  selectedTopicKey = "angular";
   openSidenav = false;
   showFiller = false;
-  private sub: any;
   myForm: FormGroup;
-  private itemDoc: AngularFirestoreDocument<any>;
-  item: Observable<any>;
   constructor(
     public router: Router,
     public afs: AngularFirestore,
@@ -27,20 +21,16 @@ export class AppComponent implements OnInit {
     public formBuilder: FormBuilder
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.navigate(["miq", this.selectedTopicKey]);
+  }
 
   onTopicClick(topic: string, title: string) {
-    this.selectedTopic = title;
-    this.router.navigate(["/", topic]);
+    this.selectedTopicTitle = title;
+    this.selectedTopicKey = topic;
   }
 
   onSubTopicSelect(id: string) {
-    this.itemDoc = this.afs.doc<any>("angular/" + id);
-    this.item = this.itemDoc.valueChanges();
-    this.item.subscribe(res => {
-      console.log(res);
-    });
-    console.log(this.item);
-    this.router.navigate(["/", "angular", id]);
+    this.router.navigate(["miq", this.selectedTopicKey, id]);
   }
 }

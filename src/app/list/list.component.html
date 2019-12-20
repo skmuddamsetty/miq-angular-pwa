@@ -1,27 +1,23 @@
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <label>
     First Name:
-    <input type="email" formControlName="firstName" required />
+    <input type="email" formControlName="email" required />
     <div
       *ngIf="
-        !profileForm.controls['firstName'].valid &&
-        !profileForm.controls['firstName'].untouched
+        !profileForm.controls['email'].valid &&
+        !profileForm.controls['email'].untouched
       "
     >
-      hello
+      Enter valid email
     </div>
   </label>
 
   <label>
-    Last Name:
-    <input type="text" formControlName="lastName" required />
-  </label>
-  <label>
-    Last Name:
+    Password
     <input type="password" formControlName="password" required />
   </label>
   <label>
-    Last Name:
+    Confirm Password
     <input type="password" formControlName="confirmPassword" required />
   </label>
   <div
