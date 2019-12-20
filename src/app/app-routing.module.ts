@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { ListComponent } from "./list/list.component";
+import { IqaListComponent } from "./iqa-list/iqa-list.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/", pathMatch: "full" },
-  { path: ":topic", component: ListComponent },
-  { path: ":topic/:id", component: ListComponent }
+  { path: ":topic", component: IqaListComponent },
+  { path: ":topic/:id", component: IqaListComponent }
 ];
 
 @NgModule({

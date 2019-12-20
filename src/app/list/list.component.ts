@@ -1,5 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import {
+  Validators,
+  FormBuilder,
+  FormGroup,
+  FormControl
+} from "@angular/forms";
 
 @Component({
   selector: "app-list",
@@ -9,7 +15,13 @@ import { ActivatedRoute } from "@angular/router";
 export class ListComponent implements OnInit {
   topic: string;
   private sub: any;
-  constructor(private route: ActivatedRoute) {}
+  profileForm = new FormGroup({
+    firstName: new FormControl("", [Validators.email]),
+    lastName: new FormControl(""),
+    password: new FormControl(""),
+    confirmPassword: new FormControl("")
+  });
+  constructor(private route: ActivatedRoute, public formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -19,5 +31,9 @@ export class ListComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  onSubmit() {
+    // console.log(this.myForm.get("email").value);
   }
 }

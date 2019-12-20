@@ -1,1 +1,38 @@
-List Works
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label>
+    First Name:
+    <input type="email" formControlName="firstName" required />
+    <div
+      *ngIf="
+        !profileForm.controls['firstName'].valid &&
+        !profileForm.controls['firstName'].untouched
+      "
+    >
+      hello
+    </div>
+  </label>
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName" required />
+  </label>
+  <label>
+    Last Name:
+    <input type="password" formControlName="password" required />
+  </label>
+  <label>
+    Last Name:
+    <input type="password" formControlName="confirmPassword" required />
+  </label>
+  <div
+    *ngIf="
+      !this.profileForm.controls['password'].untouched &&
+      !this.profileForm.controls['confirmPassword'].untouched &&
+      this.profileForm.controls['password'].value !==
+        this.profileForm.controls['confirmPassword'].value
+    "
+  >
+    Password do not match
+  </div>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
