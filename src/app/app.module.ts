@@ -19,6 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IqaListComponent } from './iqa-list/iqa-list.component';
 import { MiqaListComponent } from './miqa-list/miqa-list.component';
+import { StoreModule } from '@ngrx/store';
+import { miqListReducer } from './store/miq-list.reducer';
 
 @NgModule({
   declarations: [AppComponent, IqaListComponent, MiqaListComponent],
@@ -34,6 +36,7 @@ import { MiqaListComponent } from './miqa-list/miqa-list.component';
     MatButtonModule,
     MatSidenavModule,
     MatDividerModule,
+    StoreModule.forRoot({ miqList: miqListReducer }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule // imports firebase/firestore, only needed for database features
   ],

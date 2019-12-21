@@ -7,6 +7,8 @@ import {
 } from '@angular/fire/firestore';
 import { IdbService } from './idb.service';
 import { IQ } from '../iqa-list/interfaces/iq';
+import { Store } from '@ngrx/store';
+import * as MIQListActions from '../store/miq-list.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,11 @@ export class DataService {
   private allIQArray = new Subject<IQ[]>();
   items: Observable<any[]>;
 
-  constructor(public db: AngularFirestore, private idbService: IdbService) {
+  constructor(
+    public db: AngularFirestore,
+    private idbService: IdbService,
+    private store: Store<{ miqList: { miqList: IQ[] } }>
+  ) {
     navigator.onLine === true
       ? (this.networkMode = 'online')
       : (this.networkMode = 'offline');
@@ -99,20 +105,31 @@ export class DataService {
           this.items = itemDoc.valueChanges();
           subscription = this.items.subscribe((res: IQ[]) => {
             const resObj = res as any;
-            this.questionsArray = resObj.iqList;
-            this.idbService.addItem(
-              AppConstants.ANGULAR_INTERVIEW_QUESTIONS,
-              this.questionsArray,
-              key
-            );
-            this.currentIQNo = 0;
-            this.allIQArray.next(this.questionsArray);
-            this.currentIQ.next(this.questionsArray[this.currentIQNo]);
+            if (resObj) {
+              this.questionsArray = resObj.iqList;
+              this.idbService.addItem(
+                AppConstants.ANGULAR_INTERVIEW_QUESTIONS,
+                this.questionsArray,
+                key
+              );
+              this.currentIQNo = 0;
+              this.store.dispatch(
+                new MIQListActions.AddInterviewQuestions(this.questionsArray)
+              );
+              this.allIQArray.next(this.questionsArray);
+              this.currentIQ.next(this.questionsArray[this.currentIQNo]);
+            }
             subscription.unsubscribe();
           });
         } else {
           this.questionsArray = items;
-          console.log('offline questions', this.questionsArray);
+          this.store.dispatch(
+            new MIQListActions.AddInterviewQuestions(this.questionsArray)
+          );
+          console.log(
+            'offline questions from data service',
+            this.questionsArray
+          );
           this.currentIQNo = 0;
           this.allIQArray.next(this.questionsArray);
           this.currentIQ.next(this.questionsArray[this.currentIQNo]);

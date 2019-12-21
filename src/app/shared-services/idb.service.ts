@@ -14,7 +14,7 @@ export class IdbService {
   constructor() {}
 
   connectToIDB() {
-    this._dbPromise = openDB('pwa-database', 4, {
+    this._dbPromise = openDB('pwa-database', 5, {
       upgrade(db) {
         if (
           !db.objectStoreNames.contains(
