@@ -1,24 +1,24 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { MatSliderModule } from "@angular/material/slider";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatButtonModule } from "@angular/material/button";
-import { MatDividerModule } from "@angular/material/divider";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import {
   MatSidenavModule,
   MatDrawerContainer
-} from "@angular/material/sidenav";
-import { AngularFireModule } from "@angular/fire";
-import { environment } from "../environments/environment";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+} from '@angular/material/sidenav';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatIconModule } from "@angular/material/icon";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { IqaListComponent } from "./iqa-list/iqa-list.component";
-import { MiqaListComponent } from "./miqa-list/miqa-list.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IqaListComponent } from './iqa-list/iqa-list.component';
+import { MiqaListComponent } from './miqa-list/miqa-list.component';
 
 @NgModule({
   declarations: [AppComponent, IqaListComponent, MiqaListComponent],

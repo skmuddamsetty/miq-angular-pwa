@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { Subject, Observable, Subscription } from "rxjs";
-import { AppConstants } from "../shared/app-constants";
+import { Injectable } from '@angular/core';
+import { Subject, Observable, Subscription } from 'rxjs';
+import { AppConstants } from '../shared/app-constants';
 import {
   AngularFirestore,
   AngularFirestoreDocument
-} from "@angular/fire/firestore";
-import { IdbService } from "./idb.service";
-import { IQ } from "../iqa-list/interfaces/iq";
+} from '@angular/fire/firestore';
+import { IdbService } from './idb.service';
+import { IQ } from '../iqa-list/interfaces/iq';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class DataService {
-  networkMode = "online";
+  networkMode = 'online';
   questionsArray: IQ[];
   currentIQNo = -1;
   private currentIQ = new Subject<IQ>();
@@ -21,8 +21,8 @@ export class DataService {
 
   constructor(public db: AngularFirestore, private idbService: IdbService) {
     navigator.onLine === true
-      ? (this.networkMode = "online")
-      : (this.networkMode = "offline");
+      ? (this.networkMode = 'online')
+      : (this.networkMode = 'offline');
   }
 
   // setCurrentIQNo(IQ: IQ) {
@@ -92,10 +92,10 @@ export class DataService {
       .getAllDataForKeyInTarget(AppConstants.ANGULAR_INTERVIEW_QUESTIONS, key)
       .then((items: any) => {
         onlineDataLength = items ? items.length : 0;
-        if (this.networkMode === "online" && onlineDataLength === 0) {
+        if (this.networkMode === 'online' && onlineDataLength === 0) {
           let itemDoc: AngularFirestoreDocument<IQ[]>;
           let subscription: Subscription;
-          itemDoc = this.db.doc<IQ[]>("interview-questions/" + key);
+          itemDoc = this.db.doc<IQ[]>('interview-questions/' + key);
           this.items = itemDoc.valueChanges();
           subscription = this.items.subscribe((res: IQ[]) => {
             const resObj = res as any;
@@ -112,7 +112,7 @@ export class DataService {
           });
         } else {
           this.questionsArray = items;
-          console.log("offline questions", this.questionsArray);
+          console.log('offline questions', this.questionsArray);
           this.currentIQNo = 0;
           this.allIQArray.next(this.questionsArray);
           this.currentIQ.next(this.questionsArray[this.currentIQNo]);

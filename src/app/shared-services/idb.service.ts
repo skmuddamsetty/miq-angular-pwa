@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
-import { AppConstants } from "../shared/app-constants";
-import { openDB, deleteDB, wrap, unwrap } from "idb";
-import { IQ } from "../iqa-list/interfaces/iq";
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { AppConstants } from '../shared/app-constants';
+import { openDB, deleteDB, wrap, unwrap } from 'idb';
+import { IQ } from '../iqa-list/interfaces/iq';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class IdbService {
   private _dataChange: Subject<IQ> = new Subject<IQ>();
@@ -14,7 +14,7 @@ export class IdbService {
   constructor() {}
 
   connectToIDB() {
-    this._dbPromise = openDB("pwa-database", 4, {
+    this._dbPromise = openDB('pwa-database', 4, {
       upgrade(db) {
         if (
           !db.objectStoreNames.contains(
@@ -32,9 +32,9 @@ export class IdbService {
             autoIncrement: false
           });
         }
-        if (!db.objectStoreNames.contains("Sync-Items")) {
-          db.createObjectStore("Sync-Items", {
-            keyPath: "id",
+        if (!db.objectStoreNames.contains('Sync-Items')) {
+          db.createObjectStore('Sync-Items', {
+            keyPath: 'id',
             autoIncrement: true
           });
         }
@@ -62,7 +62,7 @@ export class IdbService {
 
   addItem(target: string, item: any, key?: string) {
     this._dbPromise.then((db: any) => {
-      const tx = db.transaction(target, "readwrite");
+      const tx = db.transaction(target, 'readwrite');
       tx.objectStore(target).put(item, key);
       this.getAllDataForKeyInTarget(target, key).then((items: any) => {
         this._dataChange.next(items);
@@ -73,7 +73,7 @@ export class IdbService {
 
   deleteItems(target: string, value: IQ) {
     this._dbPromise.then((db: any) => {
-      const tx = db.transaction(target, "readwrite");
+      const tx = db.transaction(target, 'readwrite');
       const store = tx.objectStore(target);
       store.delete(value);
       this.getAllDataForTarget(target).then((items: IQ) => {
@@ -85,15 +85,15 @@ export class IdbService {
 
   getAllData(target: string) {
     return this._dbPromise.then((db: any) => {
-      const tx = db.transaction(target, "readonly");
+      const tx = db.transaction(target, 'readonly');
       const store = tx.objectStore(target);
-      return store.get("myownkey1");
+      return store.get('myownkey1');
     });
   }
 
   getAllDataForTarget(target: string) {
     return this._dbPromise.then((db: any) => {
-      const tx = db.transaction(target, "readonly");
+      const tx = db.transaction(target, 'readonly');
       const store = tx.objectStore(target);
       return store.getAll();
     });
@@ -101,7 +101,7 @@ export class IdbService {
 
   getAllDataForKeyInTarget(target: string, key: string) {
     return this._dbPromise.then((db: any) => {
-      const tx = db.transaction(target, "readonly");
+      const tx = db.transaction(target, 'readonly');
       const store = tx.objectStore(target);
       return store.get(key);
     });
