@@ -17,13 +17,13 @@ export class IqaListComponent implements OnInit {
 
   constructor(
     public afs: AngularFirestore,
-    private store: Store<{ miqList: { miqList: IQ[] } }>
+    private store: Store<{ miqList: { miqMap: any; selectedKey: string } }>
   ) {}
 
   ngOnInit() {
     this.store.select('miqList').subscribe(res => {
-      if (res && res.miqList) {
-        this.iqaList = res.miqList;
+      if (res && res.miqMap) {
+        this.iqaList = res.miqMap.get(res.selectedKey);
       } else {
         this.iqaList = [];
       }

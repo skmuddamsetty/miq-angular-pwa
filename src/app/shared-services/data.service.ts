@@ -9,6 +9,7 @@ import { IdbService } from './idb.service';
 import { IQ } from '../iqa-list/interfaces/iq';
 import { Store } from '@ngrx/store';
 import * as MIQListActions from '../store/miq-list.actions';
+import { MiqMap } from '../store/miq-map';
 
 @Injectable({
   providedIn: 'root'
@@ -114,7 +115,9 @@ export class DataService {
               );
               this.currentIQNo = 0;
               this.store.dispatch(
-                new MIQListActions.AddInterviewQuestions(this.questionsArray)
+                new MIQListActions.AddInterviewQuestions(
+                  new MiqMap(key, this.questionsArray)
+                )
               );
               this.allIQArray.next(this.questionsArray);
               this.currentIQ.next(this.questionsArray[this.currentIQNo]);
@@ -124,7 +127,9 @@ export class DataService {
         } else {
           this.questionsArray = items;
           this.store.dispatch(
-            new MIQListActions.AddInterviewQuestions(this.questionsArray)
+            new MIQListActions.AddInterviewQuestions(
+              new MiqMap(key, this.questionsArray)
+            )
           );
           console.log(
             'offline questions from data service',

@@ -4,6 +4,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FormGroup } from '@angular/forms';
 import { IdbService } from './shared-services/idb.service';
 import { DataService } from './shared-services/data.service';
+import { Store } from '@ngrx/store';
+import { IQ } from './iqa-list/interfaces/iq';
+import * as MIQListActions from './store/miq-list.actions';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +25,8 @@ export class AppComponent implements OnInit {
     public afs: AngularFirestore,
     public route: ActivatedRoute,
     private idbService: IdbService,
-    public dataService: DataService
+    public dataService: DataService,
+    private store: Store<{ miqList: { miqList: IQ[] } }>
   ) {
     navigator.onLine === true
       ? (this.networkMode = 'online')
@@ -41,6 +45,7 @@ export class AppComponent implements OnInit {
 
   onSubTopicSelect(id: string) {
     this.dataService.loadQuestionsFromDB(id);
+    this.store.dispatch(new MIQListActions.AddSelectedKey(id));
     this.router.navigate(['miq', this.selectedTopicKey, id]);
   }
 }

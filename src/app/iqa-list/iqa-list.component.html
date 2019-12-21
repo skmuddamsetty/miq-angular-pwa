@@ -1,7 +1,7 @@
-<div *ngIf="this.iqaList.length <= 0">
+<div *ngIf="!this.iqaList || this.iqaList.length <= 0">
   No Interview Questions on the selected topic
 </div>
-<div class="iqa-list" *ngIf="this.iqaList.length > 0">
+<div class="iqa-list" *ngIf="this.iqaList && this.iqaList.length > 0">
   <div class="iqa-box" *ngFor="let iq of this.iqaList">
     <div class="iqa-box__iq">
       {{ iq.question }}
