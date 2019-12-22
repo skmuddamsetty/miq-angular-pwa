@@ -13,7 +13,35 @@ body {
 }
 
 // Override Material Design Roboto Font
-body [class^="mat-"]:not(mat-icon),
-body [class*="mat-"]:not(mat-icon) {
-  font-family: "Fira Code", Roboto, "Helvetica Neue", sans-serif;
+body [class^='mat-']:not(mat-icon),
+body [class*='mat-']:not(mat-icon) {
+  font-family: 'Fira Code', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+pre {
+  font-family: monospace;
+  background-color: #fff;
+  // width: em(440);
+  margin: 1.25rem auto;
+  padding: 1.25rem;
+  border-radius: 0.25em;
+  box-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.45);
+  line-height: 0;
+  counter-reset: line;
+
+  span {
+    display: block;
+    line-height: 3rem;
+    font-size: 1.5rem;
+
+    // &:before {
+    //   counter-increment: line;
+    //   content: counter(line);
+    //   display: inline-block;
+    //   border-right: 1px solid #ddd;
+    //   padding: 0 0.5em;
+    //   margin-right: 0.5em;
+    //   color: #888;
+    // }
+  }
 }

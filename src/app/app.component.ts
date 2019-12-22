@@ -20,19 +20,6 @@ export class AppComponent implements OnInit {
   showFiller = false;
   myForm: FormGroup;
   networkMode = 'online'; // to track network mode
-  temp = `<pre><code class="language-css">body {
-    font: 100% Helvetica, sans-serif;
-    color: #333;
-  }
-
-  .box {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    border-radius: 10px;
-  }
-  </code>
-  </pre>`;
   constructor(
     public router: Router,
     public afs: AngularFirestore,
