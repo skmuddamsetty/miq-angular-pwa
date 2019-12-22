@@ -3,7 +3,7 @@ import * as MIQListActions from './miq-list.actions';
 const initialState = {
   miqList: [],
   miqMap: new Map(),
-  selectedKey: String
+  selectedKey: 'initialkey'
 };
 
 export function miqListReducer(

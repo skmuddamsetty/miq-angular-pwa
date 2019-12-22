@@ -20,13 +20,26 @@ export class AppComponent implements OnInit {
   showFiller = false;
   myForm: FormGroup;
   networkMode = 'online'; // to track network mode
+  temp = `<pre><code class="language-css">body {
+    font: 100% Helvetica, sans-serif;
+    color: #333;
+  }
+
+  .box {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+  }
+  </code>
+  </pre>`;
   constructor(
     public router: Router,
     public afs: AngularFirestore,
     public route: ActivatedRoute,
     private idbService: IdbService,
     public dataService: DataService,
-    private store: Store<{ miqList: { miqList: IQ[] } }>
+    private store: Store<{ miqList: { miqList: IQ[]; miqMap: any } }>
   ) {
     navigator.onLine === true
       ? (this.networkMode = 'online')
@@ -35,6 +48,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    // call the loadQuestionsFromDB method initially and activate the subscription to store
+    this.dataService.loadQuestionsFromDB('random');
     this.router.navigate(['miq', this.selectedTopicKey]);
   }
 
@@ -44,8 +59,11 @@ export class AppComponent implements OnInit {
   }
 
   onSubTopicSelect(id: string) {
-    this.dataService.loadQuestionsFromDB(id);
+    // dispatching the selected key to the store
     this.store.dispatch(new MIQListActions.AddSelectedKey(id));
+    // calling
+    // this.dataService.loadQuestionsFromDB(id);
+    // routing the user
     this.router.navigate(['miq', this.selectedTopicKey, id]);
   }
 }

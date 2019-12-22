@@ -1,32 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IQ } from './interfaces/iq';
+import { DataService } from '../shared-services/data.service';
 
 @Component({
   selector: 'app-iqa-list',
   templateUrl: './iqa-list.component.html',
   styleUrls: ['./iqa-list.component.scss']
 })
-export class IqaListComponent implements OnInit {
-  topic: string;
-  id: string;
-  item: Observable<any>;
+export class IqaListComponent implements OnInit, OnDestroy {
   iqaList = [];
+  storeSubscription: Subscription;
 
   constructor(
-    public afs: AngularFirestore,
-    private store: Store<{ miqList: { miqMap: any; selectedKey: string } }>
+    private store: Store<{ miqList: { miqMap: any; selectedKey: string } }>,
+    public dataService: DataService
   ) {}
 
   ngOnInit() {
-    this.store.select('miqList').subscribe(res => {
-      if (res && res.miqMap) {
-        this.iqaList = res.miqMap.get(res.selectedKey);
-      } else {
-        this.iqaList = [];
-      }
-    });
+    if (!this.storeSubscription) {
+      this.storeSubscription = this.store.select('miqList').subscribe(res => {
+        if (res && res.miqMap && res.selectedKey) {
+          this.iqaList = res.miqMap.get(res.selectedKey);
+        } else {
+          this.iqaList = [];
+        }
+      });
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.storeSubscription) {
+      this.storeSubscription.unsubscribe();
+    }
   }
 }
