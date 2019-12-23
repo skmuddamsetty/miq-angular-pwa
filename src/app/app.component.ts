@@ -48,8 +48,6 @@ export class AppComponent implements OnInit {
   onSubTopicSelect(id: string) {
     // dispatching the selected key to the store
     this.store.dispatch(new MIQListActions.AddSelectedKey(id));
-    // calling
-    // this.dataService.loadQuestionsFromDB(id);
     // routing the user
     this.router.navigate(['miq', this.selectedTopicKey, id]);
   }

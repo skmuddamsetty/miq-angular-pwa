@@ -38,7 +38,7 @@ import { miqListReducer } from './store/miq-list.reducer';
     MatDividerModule,
     StoreModule.forRoot({ miqList: miqListReducer }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule // imports firebase/firestore, only needed for database features
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
